@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putun.c                                         :+:      :+:    :+:   */
+/*   ft_puthexalow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yamzil <yamzil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 20:52:52 by yamzil            #+#    #+#             */
-/*   Updated: 2021/12/12 15:06:29 by yamzil           ###   ########.fr       */
+/*   Created: 2021/12/11 15:42:51 by yamzil            #+#    #+#             */
+/*   Updated: 2021/12/12 17:18:12 by yamzil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int ft_putun(int nbr)
-{
+int ft_puthexalow(int nb)
+{    
+    char temp;
+    char *base;
     int i;
-    unsigned int nb;
     
-    nb = nbr;
-    i = 0;
-    if (nb < 10)
+    base = "0123456789abcdef";
+    i = 0
+    if (nb < 16)
     {
-        i += ft_putchar(nb + 48);
-    }   
+        temp = base[nb];
+        write(1, &temp, 1);
+        i++;
+    }
     else
     {
-        i += ft_putun(nb / 10);
-        i += ft_putun(nb % 10);        
+       i += ft_puthexalow(nb / 16);
+       i += ft_puthexalow(nb % 16);
     }
-return(i);
+    return(i);
 }

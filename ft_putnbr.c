@@ -6,30 +6,33 @@
 /*   By: yamzil <yamzil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:36:10 by yamzil            #+#    #+#             */
-/*   Updated: 2021/12/10 22:54:16 by yamzil           ###   ########.fr       */
+/*   Updated: 2021/12/12 21:19:53 by yamzil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int ft_putnbr(int nbr, int *len)
+int ft_putnbr(int nbr)
 {
-    len = "0123456789";
-    while (nbr < 0)
+    int i;
+
+    i = 0;
+    long long nb;
+    nb = nbr;
+    while (nb < 0)
     {
         ft_putchar('-');
-        nbr *= -1;
-        len += 1;
+        nb *= -1;
+        i++;
     }
-    if (nbr < 10)
+    if (nb < 10)
     {
-        ft_putchar(nbr + 48);
-        len += 1;
+        i += ft_putchar(nb + 48);
     }
     else
     {
-        ft_putnbr(nbr / 10,len);
-        ft_putnbr(nbr % 10,len);
+        i += ft_putnbr(nb / 10);
+        i += ft_putnbr(nb % 10);
     }
-return (len);   
+return (i);   
 }
